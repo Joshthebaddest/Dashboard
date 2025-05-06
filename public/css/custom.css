@@ -1,0 +1,65 @@
+.error-message{
+    display: none;
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+.php-error{
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Toast Styles */
+.toast.show {
+    visibility: visible;
+    opacity: 1;
+    bottom: 50px;
+}
+
+/* Toast Styles */
+.toast-container {
+    position: fixed;
+    top: 60px;
+    right: 10px;
+    /* transform: translateX(-50%); */
+    z-index: 9999;
+    width: 300px;
+}
+
+.toast {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.5s, bottom 0.5s;
+}
+
+.toast-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    background-color: #fff;
+    animation: progress 5s linear forwards;
+}
+
+@keyframes progress {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0;
+    }
+}
+
+/* Hover effect */
+.toast:hover .toast-progress {
+    animation-play-state: paused;
+}

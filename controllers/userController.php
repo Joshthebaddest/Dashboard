@@ -6,19 +6,17 @@
     include($dir.'/../data.php');
     $errors = [];
     
-    $userId = isset($userId) ? $userId : $_GET['id'];
-    if(!$userId){
+    $user = isset($user) ? $user : $_GET['user'];
+    if(!$user){
         header('Location: ../views/home.php');
         exit();
     }
 
-
-
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
         if(isset($type) && $type == "edit"){
-            $sql = "SELECT * FROM $users_table WHERE id = ?";
+            $sql = "SELECT * FROM $users_table WHERE username = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("i", $userId);
+            $stmt->bind_param("s", $user);
             $stmt->execute();
             $result = $stmt->get_result();
             $row = $result->fetch_assoc();

@@ -32,7 +32,7 @@
                     $result -> bind_param("ss", $role, $username);
                     if ($result->execute()) {
                         echo "New record updated successfully";
-                        header("Location: ../views/home.php");
+                        header("Location: ../pages/home.php");
                     } else {
                         echo "Error: " . $sql . "<br>" . $conn->error;
                     }

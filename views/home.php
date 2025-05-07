@@ -65,10 +65,10 @@
                                             <div 
                                                 class="<?= isset($_SESSION["role"]) && $_SESSION["role"] === "editor" && $role === "admin" ? "hidden" : "flex" ?> gap-2 p-1 px-2 hover:bg-gray-300 rounded-xl cursor-pointer"
                                             >
-                                                <form action="../controllers/roleController.php" method="POST">
+                                                <form action="../controllers/roleController.php" method="POST" class="w-full">
                                                     <input type="hidden" name="username" value="<?= $row["username"] ?>">
                                                     <input type="hidden" name="role" value="<?= $role ?>">
-                                                    <button type="submit" class="text-sm block capitalize font-semibold flex gap-2"><?= $role ?><?php if($row["role"] === $role): ?><i class="w-4 h-4 mt-1" data-lucide="check"></i><?php endif ?></button>
+                                                    <button type="submit" class="text-sm capitalize font-semibold w-full text-left <?= $row["role"] === $role ? "flex gap-2" : "block" ?>"><?= $role ?><?php if($row["role"] === $role): ?><i class="w-4 h-4 mt-1" data-lucide="check"></i><?php endif ?></button>
                                                 </form>
                                             </div>
                                             
@@ -80,7 +80,7 @@
                             </td>
                             <?php if(isset($role_hierarchy[$_SESSION["role"]], $role_hierarchy[$row["role"]]) && $role_hierarchy[$_SESSION["role"]] > $role_hierarchy[$row["role"]]): ?>
                             <td class="flex gap-2 py-3 px-6 text-left whitespace-nowrap"> 
-                                <a href="./editUser.php?id=<?=$row['id']?>&type=edit" class='edit btn hover:bg-gray-600 p-1'><i class="w-5 h-5 text-gray-600 hover:text-white" data-lucide="square-pen"></i></a>
+                                <a href="./editUser.php?user=<?=$row['username']?>&type=edit" class='edit btn hover:bg-gray-600 p-1'><i class="w-5 h-5 text-gray-600 hover:text-white" data-lucide="square-pen"></i></a>
                                 <?php if(isset($_SESSION["role"]) && ($_SESSION["role"] === "admin" || $_SESSION["role"] === "super_admin")): ?>
                                 <button type="submit" class='delete btn hover:bg-red-600 p-1'><i class="w-5 h-5 text-red-600 hover:text-white" data-lucide="trash-2"></i></a>
                                 <?php endif; ?>

@@ -60,7 +60,7 @@
 
                 if ($result->execute()) {
                     echo 'File uploaded and saved to database successfully.';
-                    header("Location: ../views/editUser.php");
+                    header("Location: ../pages/editUser.php");
                 } else {
                     echo 'Failed to save file information to database.';
                 }

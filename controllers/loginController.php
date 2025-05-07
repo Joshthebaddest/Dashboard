@@ -32,7 +32,7 @@
                     $_SESSION['role'] = $role;
 
                     // redirect to homepage
-                    header("Location: ../views/home.php");
+                    header("Location: ../pages/home.php");
                     exit();
                 }else{
                     $errors['error'] = 'invalid credentials';

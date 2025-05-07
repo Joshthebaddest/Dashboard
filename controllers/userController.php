@@ -8,7 +8,7 @@
     
     $user = isset($user) ? $user : $_GET['user'];
     if(!$user){
-        header('Location: ../views/home.php');
+        header('Location: ../pages/home.php');
         exit();
     }
 
@@ -54,7 +54,7 @@
                     echo($_SERVER['HTTP_REFERER']);
                     if(isset($_SERVER['HTTP_REFERER'])){
                         echo($_SERVER['HTTP_REFERER']);
-                        header('Location: ../views/home.php');
+                        header('Location: ../pages/home.php');
                     }   
                     exit();
                 } else {
@@ -70,7 +70,7 @@
             $result->bind_param("i", $userId);
             if($result->execute()){
                 echo "New record deleted successfully";
-                header('Location: ../views/home.php');
+                header('Location: ../pages/home.php');
             }else{
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }

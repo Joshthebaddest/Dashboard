@@ -31,7 +31,7 @@
                 require('../config/sessionConfig.php');
                 $_SESSION['user'] = $username;
                 $_SESSION['email'] = $email;
-                header('Location: ../views/home.php');
+                header('Location: ../pages/home.php');
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }

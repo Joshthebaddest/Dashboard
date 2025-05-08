@@ -33,12 +33,15 @@
 
                     // redirect to homepage
                     header("Location: ../pages/home.php");
+                    $conn->close();
                     exit();
                 }else{
                     $errors['error'] = 'invalid credentials';
+                    $conn->close();
                 }
             }
             $errors['error'] = 'invalid credentials';
+            $conn->close();
         }
     }
 

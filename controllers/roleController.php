@@ -33,8 +33,10 @@
                     if ($result->execute()) {
                         echo "New record updated successfully";
                         header("Location: ../pages/home.php");
+                        $conn->close();
                     } else {
                         echo "Error: " . $sql . "<br>" . $conn->error;
+                        $conn->close();
                     }
                 } else {
                     die("You do not have permission to assign this role.");

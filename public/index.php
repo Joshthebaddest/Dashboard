@@ -3,7 +3,7 @@
 $url = $_GET['url'] ?? '';
 
 
-// echo($page);
+// echo($url);
 // exit();
 
 // Define route-to-file map
@@ -20,8 +20,8 @@ $routes = [
 ];
 
 // Check if route exists
-if (isset($routes[$page])) {
-    $route = $routes[$page];
+if (isset($routes[$url])) {
+    $route = $routes[$url];
 
     // Load protected middleware if required
     if (!empty($route['protected'])) {

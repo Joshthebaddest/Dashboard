@@ -8,6 +8,7 @@ $url = $_GET['url'] ?? '';
 
 // Define route-to-file map
 $routes = [
+    ''         => ['view' => '/../app/views/home.php'],
     'home'         => ['view' => '/../app/views/home.php'],
     'auth/login'   => ['view' => '/../app/views/login.php'],
     'auth/signup'  => ['view' => '/../app/views/signup.php'],

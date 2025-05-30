@@ -12,7 +12,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>My App</title>
-        <link rel="stylesheet" href="../public/css/style.css">
+        <link rel="stylesheet" href="/css/style.css">
         <!-- Development version -->
         <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -89,8 +89,8 @@
         <div id="toast-container" class="fixed top-5 right-5 space-y-4 z-50"></div>
 
 
-        <script src="../public/js/script.js"></script>
-        <script src="../public/js/toast.js"></script>
+        <script src="/js/script.js"></script>
+        <script src="/js/toast.js"></script>
         <script>
             lucide.createIcons();
         </script>

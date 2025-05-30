@@ -1,7 +1,7 @@
 const ele = document.querySelectorAll('nav ul li');
 
 ele.forEach(li => {
-    const match = location.href.split('/').includes(li.children[0].getAttribute('href').split('/')[1])
+    const match = location.href.split('/public').includes(li.children[0].getAttribute('href').split('.')[1])
     if(match){
         li.classList.add('bg-gray-800');
     }else{

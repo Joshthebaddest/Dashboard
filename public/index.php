@@ -1,5 +1,7 @@
 <?php
-$page = $_GET['page'] ?? 'home';
+// public/index.php
+$url = $_GET['url'] ?? '';
+
 
 // echo($page);
 // exit();

@@ -81,7 +81,7 @@
         <div class="bg-gray-200 animate-pulse rounded-lg h-48"></div>
       <?php endfor; ?>
     </div>
-    <?php else: ?>
+    <?php elseif(isset($vendors)): ?>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <?php foreach ($vendors as $vendor): ?>
           <div class="hover:shadow-lg transition-shadow duration-200 border rounded-lg overflow-hidden bg-white">
@@ -125,5 +125,7 @@
           </div>
         <?php endforeach; ?>
     </div>
+    <?php else: ?>
+      <p>No vendors Found</p>
   <?php endif; ?>
 </div>

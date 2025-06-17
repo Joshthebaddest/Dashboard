@@ -43,7 +43,10 @@
   }catch(Exception $e){
     $e -> getMessage();
   }
-
+  if(!isset($product)) {
+    require_once __DIR__ . '/../../../public/404.html';
+    exit();
+  }
 ?>
 
 <div class="p-10"> 

@@ -59,6 +59,11 @@
       $breadcrumbs[] =['label' => $res, 'url' => '/'.$res];
     }
   };
+
+  if(!isset($vendor)) {
+    require_once __DIR__ . '/../../../public/404.html';
+    exit();
+  }
 ?>
 <div class="p-10"> 
   <?php include_once __DIR__ . '/components/breadcrumb.php' ?>

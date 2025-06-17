@@ -157,14 +157,20 @@
       <div class="mb-3">
         <h4 class="font-semibold mb-2">Category</h4>
         <ul class="space-y-1 text-gray-700">
-          <?php foreach($category as $row): ?>
+          <?php 
+            if(!isset($category)):WS
+            foreach($category as $row): 
+          ?>
           <li>
             <label class="inline-flex items-center">
               <input type="checkbox" name="category_<?= htmlspecialchars($row['id'])?>" <?= isset($_GET['category_'.$row['id']]) ? 'checked' : '' ?> class="form-checkbox" /> 
               <span class="ml-2"><?= htmlspecialchars($row['name']) ?></span>
             </label>
           </li>
-          <?php endforeach; ?>
+          <?php 
+            endforeach; 
+            endif;
+          ?>
         </ul>
       </div>
       
@@ -249,7 +255,7 @@
         <div class="bg-gray-200 animate-pulse rounded-lg h-80"></div>
       <?php endfor; ?>
     </div>
-    <?php else: ?>
+    <?php elseif(isset($products)): ?>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <?php foreach($products as $product): ?>
           <!-- Product Grid Placeholder -->
@@ -264,6 +270,8 @@
         <a href="#" class="px-4 py-2 bg-white rounded shadow hover:bg-blue-50">3</a>
         <a href="#" class="px-4 py-2 bg-white rounded shadow hover:bg-blue-50"><i data-lucide="chevron-right" class="w-4 h-4 my-1"></i></a>
       </nav>
+    <?php else: ?>
+      <p>No Products Found</p>
     <?php endif; ?>
   </div>
 </main>

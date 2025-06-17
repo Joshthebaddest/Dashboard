@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../../config/globalConfig.php';
   // Dummy products array
   $products = [
       [
@@ -206,7 +207,7 @@ $vendors = [
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <button size="lg" asChild class="bg-white text-blue-600 hover:bg-gray-100">
-            <a href="/products">Shop Now</a>
+            <a href="<?= BASE_PATH ?>products">Shop Now</a>
           </button>
           <button
             size="lg"
@@ -214,7 +215,7 @@ $vendors = [
             asChild
             class="border-white text-white hover:bg-white hover:text-blue-600"
           >
-            <a href="/vendors">Browse Vendors</a>
+            <a href="<?= BASE_PATH ?>vendors">Browse Vendors</a>
           </button>
         </div>
       </div>

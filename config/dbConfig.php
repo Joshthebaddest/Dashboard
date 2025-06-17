@@ -1,33 +1,37 @@
 <?php
-    // $servername = "localhost";
-    // $sqlusername = "root";
-    // $sqlpassword = "";
-    // $dbname= "myDB";
-    // $connected = false;
+    class Database {
+        private $host = 'localhost';
+        private $db_name = 'myDB';
+        private $username = 'root';
+        private $password = '';
+        public $conn;
 
-    // Create connection
-    // $conn = new mysqli($servername, $sqlusername, $sqlpassword, $dbname);
+        public function connect() {
+            $this->conn = new mysqli($this->host, $this->username, $this->password, $this->db_name);
 
-    // Check connection
+            if ($this->conn->connect_error) {
+                die("Connection failed: " . $this->conn->connect_error);
+            }
+
+            return $this->conn;
+        }
+    }
+
+    // $host = getenv('DB_HOST');
+    // $db   = getenv('DB_NAME');
+    // $user = getenv('DB_USER');
+    // $pass = getenv('DB_PASSWORD');
+
+    // // Create connection
+    // $conn = new mysqli($host, $user, $pass, $db);
+
+    // // Check connection
     // if ($conn->connect_error) {
     //     die("Connection failed: " . $conn->connect_error);
     // }
 
-    // $connected = true;
-
-    $host = getenv('DB_HOST');
-    $db   = getenv('DB_NAME');
-    $user = getenv('DB_USER');
-    $pass = getenv('DB_PASSWORD');
-
-    // Create connection
-    $conn = new mysqli($host, $user, $pass, $db);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Optional: set charset
-    $conn->set_charset("utf8mb4");
+    // // Optional: set charset
+    // $conn->set_charset("utf8mb4");
 ?>
+
+

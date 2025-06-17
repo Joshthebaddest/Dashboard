@@ -39,7 +39,7 @@
         if (move_uploaded_file($fileTmpPath, $destination)) {
             return [
                 'success' => true,
-                'filePath' => $destination,
+                'filePath' => '/apps/public/uploads/'.$newFileName,
                 'fileName' => $newFileName,
                 'originalName' => $fileName,
                 'fileSize' => $fileSize,

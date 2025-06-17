@@ -1,19 +1,23 @@
 <?php
    $dir = realpath(__DIR__);
+    require_once __DIR__ .'/../../config/globalConfig.php';
     require($dir.'/sessionTimeout.php');
     if(isset($_SESSION["user"])) {
-        include($dir.'/../models/users.php');
-        $user = $_SESSION["user"];
-        $sql = "SELECT username, role, profileImg FROM $users_table WHERE username = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $user);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        if(empty($row)) header("Location: /apps/public/");
-        $_SESSION["role"] = $row["role"];
+        require_once __DIR__ . '/../models/users.php';
+        try{
+            $user = $_SESSION["user"];
+            $user = User::query()
+                ->select('username', 'role', 'profileImg')
+                ->where('username', $user)
+                ->first();
+            if(empty($user)) header("Location: ". BASE_PATH . "auth/login");
+            $_SESSION["role"] = $user["role"];
+            $_SESSION["profile_img"] = $user["profileImg"];
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }
     } else {
-        header("Location: /apps/public/");
+        header("Location: ". BASE_PATH ."auth/login");
         exit();
     }
 ?>

@@ -1,4 +1,5 @@
 <?php
+    include_once __DIR__ . '/../../../config/globalConfig.php';
     $dir = realpath(__DIR__);
     include($dir.'/../data.php');
     $errors = [];
@@ -13,27 +14,33 @@
         $dateOfBirth = test_input($_POST["dob"]);
         $password = test_input($_POST["password"]);
         $confirmPassword = test_input($_POST["confirm_password"]);
-        $id = test_input(uniqid());
-        echo($id);
 
         validate_form($firstname, $lastname, $username, $email, $country, $gender, $dateOfBirth, $password, $confirmPassword);
 
         if (empty($errors)) {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $rawToken = bin2hex(random_bytes(32)); // 64 characters (256 bits)
+            $tokenHash = hash('sha256', $rawToken);
+            $expires_at = date('Y-m-d H:i:s', strtotime('+1 hour'));
                 
-            require($dir.'/../models/users.php');
+            require_once __DIR__ . '/../models/users.php';
 
-            $sql = "INSERT INTO $users_table (firstname, lastname, username, email, country, gender, date_of_birth, password_hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            $result = $conn->prepare($sql);
-            $result -> bind_param("ssssssss", $firstname, $lastname, $username, $email, $country, $gender, $dateOfBirth, $hashed_password);
-            $execute = $result->execute();
-            if ($execute) {
-                require('../config/sessionConfig.php');
-                $_SESSION['user'] = $username;
-                $_SESSION['email'] = $email;
-                header('Location: ../pages/home.php');
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
+            try {
+                User::create([
+                    'firstname' => $firstname,
+                    'lastname' => $lastname,
+                    'username' => $username,
+                    'email' => $email,
+                    'country' => $country,
+                    'gender' => $gender,
+                    'date_of_birth' => $dateOfBirth,
+                    'password_hash' => $hashed_password,
+                    'email_verification_token' => $tokenHash,
+                    'email_verification_expires' => $expires_at
+                ]);
+                header('Location: '. BASE_PATH. 'auth/verify-email?token='.$rawToken);
+            } catch (Exception $e) {
+                echo $e->getMessage();
             }
         } else {
             // print_r($errors); // to debug

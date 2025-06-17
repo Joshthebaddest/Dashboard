@@ -1,8 +1,6 @@
 <?php 
-
     $dir = realpath(__DIR__);
-    include($dir.'/../config/dbConfig.php');
-    include($dir.'/../models/users.php');
+    require_once __DIR__ . '/../models/users.php';
     include($dir.'/../data.php');
     $errors = [];
     
@@ -14,20 +12,22 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
         if(isset($type) && $type == "edit"){
-            $sql = "SELECT * FROM $users_table WHERE username = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("s", $user);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $row = $result->fetch_assoc();
+            try{
+                $user = User::query()
+                    ->select('*')
+                    ->where('username', $user)
+                    ->first();
 
-            $firstname = $row['firstname'];
-            $lastname = $row['lastname'];
-            $username = $row['username'];
-            $email = $row['email'];
-            $country = $row['country'];
-            $gender = $row['gender'];
-            $dob = $row['date_of_birth'];
+                $firstname = $user['firstname'];
+                $lastname = $user['lastname'];
+                $username = $user['username'];
+                $email = $user['email'];
+                $country = $user['country'];
+                $gender = $user['gender'];
+                $dob = $user['date_of_birth'];
+            }catch(Exception $e){
+                echo $e->getMessage();
+            }
         }
     }
 
@@ -45,34 +45,34 @@
 
             if (empty($errors)) {
                 include('../models/users.php');
-
-                $sql = "UPDATE $users_table SET firstname = ?, lastname = ?, username = ?, email = ?, country = ?, gender = ?, date_of_birth = ? WHERE ID = ?";
-                $result = $conn->prepare($sql);
-                $result -> bind_param("sssssssi", $firstname, $lastname, $username, $email, $country, $gender, $dateOfBirth, $userId);
-                if ($result->execute()) {
-                    echo "New record updated successfully";
+                try{
+                    User::update(['id' => $userId], [
+                        'firstname' => $firstname,
+                        'lastname' => $lastname,
+                        'username' => $username,
+                        'email' => $email,
+                        'country' => $country,
+                        'gender' => $gender,
+                        'date_of_birth' => $dateOfBirth
+                    ])
+        
                     echo($_SERVER['HTTP_REFERER']);
                     if(isset($_SERVER['HTTP_REFERER'])){
                         echo($_SERVER['HTTP_REFERER']);
                         header('Location: ../pages/home.php');
                     }   
                     exit();
-                } else {
-                    echo "Error: " . $sql . "<br>" . $conn->error;
+               }catch(Exception $e){
+                    echo $e->getMessage();
                 }
-            } else {
-                // print_r($errors); // to debug
             }
         }
         if(isset($_GET['type']) && $_GET['type'] == "delete"){
-            $sql = "DELETE FROM $users_table WHERE id = ?";
-            $result = $conn->prepare($sql);
-            $result->bind_param("i", $userId);
-            if($result->execute()){
+            try{
+                User::delete(['id' => $userId]);
                 echo "New record deleted successfully";
-                header('Location: ../pages/home.php');
-            }else{
-                echo "Error: " . $sql . "<br>" . $conn->error;
+            }catch(Exception $e){
+                echo $e->getMessage()
             }
         }
     }

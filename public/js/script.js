@@ -12,15 +12,15 @@ ele.forEach(li => {
 
 document.querySelectorAll('.delete').forEach(btn =>{
     btn.addEventListener('click', function (){
-        document.getElementById('popup').classList.toggle('hidden')
-        document.getElementById('popup-message').classList.toggle('hidden')
+        document.getElementById('popup').classList.toggle('hidden');
+        document.getElementById('popup-message').classList.toggle('hidden');
     })
 })
 
 document.querySelectorAll('.popup-btn').forEach(btn =>{
     btn.addEventListener('click', function (){
-        document.getElementById('popup').classList.toggle('hidden')
-        document.getElementById('popup-message').classList.toggle('hidden')
+        document.getElementById('popup').classList.toggle('hidden');
+        document.getElementById('popup-message').classList.toggle('hidden');
     })
 })
 
@@ -44,10 +44,14 @@ document.querySelectorAll('.dropdown-selector').forEach(container => {
 })
 
 
-
-
 document.getElementById('fileInput').addEventListener('change', function(e){
     document.getElementById('profileImg').setAttribute('src', URL.createObjectURL(e.target.files[0]))
+})
+
+document.querySelectorAll('fileInput').forEach(img => {
+    img.addEventListener('change', function(e){
+        document.getElementById('profileImg').setAttribute('src', URL.createObjectURL(e.target.files[0]))
+    })
 })
 
 

@@ -158,7 +158,7 @@
         <h4 class="font-semibold mb-2">Category</h4>
         <ul class="space-y-1 text-gray-700">
           <?php 
-            if(!isset($category)):WS
+            if(isset($category)):
             foreach($category as $row): 
           ?>
           <li>

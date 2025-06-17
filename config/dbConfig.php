@@ -6,17 +6,22 @@
         private $password;
         public $conn;
 
-        // private $host = 'localhost';
-        // private $db_name = 'myDB';
-        // private $username = 'root';
-        // private $password = '';
-        // public $conn;
-
         public function __construct() {
-            $this->host = getenv('DB_HOST');
-            $this->db_name = getenv('DB_NAME');
-            $this->username = getenv('DB_USER');
-            $this->password = getenv('DB_PASSWORD');
+            $host = $_SERVER['HTTP_HOST'] ?? 'cli';
+
+            if ($host === 'localhost') {
+                // Development (local)
+                $this->host = 'localhost';
+                $this->db_name = 'myDB';
+                $this->username = 'root';
+                $this->password = '';
+            } else {
+                // Production (Render, etc.)
+                $this->host = getenv('DB_HOST');
+                $this->db_name = getenv('DB_NAME');
+                $this->username = getenv('DB_USER');
+                $this->password = getenv('DB_PASSWORD');
+            }
         }
 
         public function connect() {

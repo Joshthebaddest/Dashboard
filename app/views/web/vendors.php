@@ -95,7 +95,7 @@
                   class="rounded-full"
                 />
                 <div class="flex-1">
-                  <a href="<?= BASE_PATH ?>vendors/<?php echo $vendor['id']; ?>">
+                  <a href="<?= BASE_PATH ?>vendors/<?php echo $vendor['name']; ?>">
                     <h3 class="font-semibold text-lg hover:text-blue-600 transition-colors">
                       <?php echo htmlspecialchars($vendor['name']); ?>
                     </h3>

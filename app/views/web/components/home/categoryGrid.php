@@ -25,8 +25,10 @@
       <h2 class="text-3xl font-bold mb-4">Shop by Category</h2>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
-      <?php foreach ($categories as $category): 
-        $slug = $category['slug'];
+      <?php
+        if(isset($categories)):
+          foreach ($categories as $category): 
+            $slug = $category['slug'];
       ?>
         <a href="/category/<?= $slug ?>" class="block hover:shadow-lg transition-shadow cursor-pointer">
           <div class="p-4 text-center border rounded-lg bg-white">
@@ -35,7 +37,10 @@
             <p class="text-xs text-gray-500"><?= htmlspecialchars($category['count']) ?></p>
           </div>
         </a>
-      <?php endforeach; ?>
+      <?php 
+        endforeach; 
+        endif;
+      ?>
     </div>
   </div>
 </section>

@@ -4,9 +4,6 @@ class CartManager {
     protected $userId;
 
     public function __construct($userId = null) {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
         $this->userId = $userId;
     }
 

@@ -1,8 +1,9 @@
 # Use the official PHP image with Apache
 FROM php:8.2-apache
 
-# Install required packages
-RUN apt-get update && apt-get install -y unzip
+# Install required packages and mysqli extension
+RUN apt-get update && apt-get install -y unzip \
+    && docker-php-ext-install mysqli
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite

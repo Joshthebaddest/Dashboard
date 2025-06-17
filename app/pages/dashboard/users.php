@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/../render.php';
 
-render('users', [
+render('users', 'dashboard', [
     'pageTitle' => 'Users'
-], 'dashboard');
+]);

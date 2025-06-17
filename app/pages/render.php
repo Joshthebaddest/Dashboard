@@ -1,5 +1,5 @@
 <?php
-    function render($view, $data = [], $fileDir) {
+    function render($view, $fileDir, $data = []) {
         extract($data);
         ob_start();
         include __DIR__ . "/../views/{$fileDir}/{$view}.php";

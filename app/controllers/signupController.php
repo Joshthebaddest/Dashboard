@@ -1,5 +1,5 @@
 <?php
-    include_once __DIR__ . '/../../../config/globalConfig.php';
+    include_once __DIR__ . '/../../config/globalConfig.php';
     $dir = realpath(__DIR__);
     include($dir.'/../data.php');
     $errors = [];

@@ -15,6 +15,7 @@
     }
   }catch(Exception $e) {
     // Handle query preparation error
+    echo('error: ');
     echo $e -> getMessage();
   }
 ?>

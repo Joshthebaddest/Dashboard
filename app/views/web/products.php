@@ -57,57 +57,63 @@
       ->get();
 
   }catch(Exception $e) {
+    echo('error: ');
     echo $e -> getMessage();
   }
 
   if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if(count($_GET) >= 2 && !isset($_GET['search'])){
       $products = [];
-      foreach ($_GET as $key => $value) {
-          if (str_starts_with($key, 'category_')) {
-              $category_id = str_replace('category_', '', $key);
+      try{
+        foreach ($_GET as $key => $value) {
+            if (str_starts_with($key, 'category_')) {
+                $category_id = str_replace('category_', '', $key);
 
-              $query = Product::query()->select('*')->where('category_id', $category_id);
+                $query = Product::query()->select('*')->where('category_id', $category_id);
 
-              // Optional price filters
-              if (!empty($_GET['minRange'])) {
+                // Optional price filters
+                if (!empty($_GET['minRange'])) {
                   $query->where('price', '>=', $_GET['minRange']);
-              }
+                }
 
-              if (!empty($_GET['maxRange'])) {
+                if (!empty($_GET['maxRange'])) {
                   $query->where('price', '<=', $_GET['maxRange']);
-              }
+                }
 
-              // if (!empty($_GET['rating'])) {
-              //     $query->where('rating', '>=', $_GET['rating']);
-              // }
+                // if (!empty($_GET['rating'])) {
+                //     $query->where('rating', '>=', $_GET['rating']);
+                // }
 
-              // // Optional sorting
-              // if (!empty($_GET['sort_by']) && in_array($_GET['sort_by'], ['price', 'product_name', 'created_at'])) {
-              //     $sortOrder = (!empty($_GET['sort_order']) && strtolower($_GET['sort_order']) === 'desc') ? 'desc' : 'asc';
-              //     $query->orderBy($_GET['sort_by'], $sortOrder);
-              // }
+                // // Optional sorting
+                // if (!empty($_GET['sort_by']) && in_array($_GET['sort_by'], ['price', 'product_name', 'created_at'])) {
+                //     $sortOrder = (!empty($_GET['sort_order']) && strtolower($_GET['sort_order']) === 'desc') ? 'desc' : 'asc';
+                //     $query->orderBy($_GET['sort_by'], $sortOrder);
+                // }
 
-              // Optional pagination (default: page 1, 10 items)
-              $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-              $pageSize = isset($_GET['page_size']) ? (int)$_GET['page_size'] : 10;
-              $results = $query->paginate($page, $pageSize)->getWithPagination();
+                // Optional pagination (default: page 1, 10 items)
+                $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                $pageSize = isset($_GET['page_size']) ? (int)$_GET['page_size'] : 10;
+                $results = $query->paginate($page, $pageSize)->getWithPagination();
 
-              foreach ($results['data'] as $row) {
-                  $products[] = [
-                      'id' => $row['id'],
-                      'name' => $row['product_name'],
-                      'image' => $row['img_url'],
-                      'vendorId' => 0,
-                      'vendorName' => $row['username'],
-                      'discount' => 20,
-                      'rating' => 4.3,
-                      'reviews' => 87,
-                      'price' => $row['price'],
-                      'originalPrice' => 99.99
-                  ];
-              }
-          }
+                foreach ($results['data'] as $row) {
+                    $products[] = [
+                        'id' => $row['id'],
+                        'name' => $row['product_name'],
+                        'image' => $row['img_url'],
+                        'vendorId' => 0,
+                        'vendorName' => $row['username'],
+                        'discount' => 20,
+                        'rating' => 4.3,
+                        'reviews' => 87,
+                        'price' => $row['price'],
+                        'originalPrice' => 99.99
+                    ];
+                }
+            }
+        }
+      }catch(Exception $e){
+        echo('error: ');
+        echo $e -> getMessage();
       }
     }
   }

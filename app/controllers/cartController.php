@@ -5,7 +5,6 @@
     $user = isset($_SESSION['user']) ?? null;
     $cart = new CartManager($user); 
     $carts = $cart -> getCart();
-   
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $product_id = htmlspecialchars($_POST['product_id']);

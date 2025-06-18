@@ -39,8 +39,10 @@
         </a>
       <?php 
         endforeach; 
-        endif;
       ?>
+      <?php else: ?>
+        <p>No Categories Available</p>
+      <?php endif; ?>
     </div>
   </div>
 </section>

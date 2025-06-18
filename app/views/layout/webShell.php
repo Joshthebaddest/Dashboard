@@ -31,7 +31,7 @@
     </div>
   <header class="bg-white shadow p-4 flex flex-col md:flex-row items-center justify-between sticky top-0 z-50">
     <div class="flex items-center space-x-4 mb-4 md:mb-0">
-      <div class="text-3xl font-bold text-blue-600 select-none cursor-pointer">PBUY</div>
+      <div class="text-3xl font-bold text-blue-600 select-none cursor-pointer"><a href="<?= BASE_PATH ?>">PBUY</a></div>
       <form class="flex" action="" method="GET">
         <input
           type="text"
@@ -120,7 +120,7 @@
                 <div class="space-y-4">
                     <div class="flex items-center space-x-2">
                         <i data-lucide="store" class="h-6 w-6 text-blue-400"> </i>
-                        <span class="font-bold text-xl">MultiVendor</span>
+                        <span class="font-bold text-xl">PBUY</span>
                     </div>
                     <p class="text-gray-400">Your trusted marketplace connecting buyers with quality vendors worldwide.</p>
                     <div class="flex space-x-4">
@@ -136,22 +136,22 @@
                     <h3 class="font-semibold text-lg mb-4">Quick Links</h3>
                     <ul class="space-y-2">
                         <li>
-                            <a href="/products" class="text-gray-400 hover:text-white">
+                            <a href="<?= BASE_PATH ?>products" class="text-gray-400 hover:text-white">
                                 Products
                             </a>
                         </li>
                         <li>
-                            <a href="/vendors" class="text-gray-400 hover:text-white">
+                            <a href="<?= BASE_PATH ?>vendors" class="text-gray-400 hover:text-white">
                                 Vendors
                             </a>
                         </li>
                         <li>
-                            <a href="/categories" class="text-gray-400 hover:text-white">
+                            <a href="<?= BASE_PATH ?>categories" class="text-gray-400 hover:text-white">
                                 Categories
                             </a>
                         </li>
                         <li>
-                            <a href="/deals" class="text-gray-400 hover:text-white">
+                            <a href="<?= BASE_PATH ?>deals" class="text-gray-400 hover:text-white">
                                 Deals
                             </a>
                         </li>
@@ -190,17 +190,17 @@
                     <h3 class="font-semibold text-lg mb-4">Legal</h3>
                     <ul class="space-y-2">
                         <li>
-                            <a href="/privacy" class="text-gray-400 hover:text-white">
+                            <a href="<?= BASE_PATH ?>privacy" class="text-gray-400 hover:text-white">
                                 Privacy Policy
                             </a>
                         </li>
                         <li>
-                            <a href="/terms" class="text-gray-400 hover:text-white">
+                            <a href="<?= BASE_PATH ?>terms" class="text-gray-400 hover:text-white">
                                 Terms of Service
                             </a>
                         </li>
                         <li>
-                            <a href="/cookies" class="text-gray-400 hover:text-white">
+                            <a href="<?= BASE_PATH ?>cookies" class="text-gray-400 hover:text-white">
                                 Cookie Policy
                             </a>
                         </li>
@@ -209,7 +209,7 @@
             </div>
 
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 MultiVendor. All rights reserved.</p>
+                <p>&copy; 2025 PBUY. All rights reserved.</p>
             </div>
         </div>
     </footer>

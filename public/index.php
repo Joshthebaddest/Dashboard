@@ -40,6 +40,8 @@ foreach ($routes as $routePattern => $routeConfig) {
     if (preg_match($regexPattern, $url, $matches)) {
         $routeMatched = true;
 
+        require_once __DIR__ . '/../config/sessionConfig.php';
+
         // Extract dynamic params
         $params = array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
         foreach ($params as $key => $value) {
@@ -59,6 +61,7 @@ foreach ($routes as $routePattern => $routeConfig) {
             require_once __DIR__ . '/404.html';
             break;
         }
+
 
         // Load the view/controller
         require_once __DIR__ . $routeConfig['view'];

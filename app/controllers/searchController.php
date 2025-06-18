@@ -16,14 +16,21 @@
             foreach($data as $row){
                 if (stripos($row['product_name'], $searchField) !== false) {
                     $matchedOn = 'product';
-                    header('Location: '. BASE_PATH .'products?'.$search);
-                    exit();
+                    if (strpos($_SERVER['REQUEST_URI'], '/products') === false) {
+                        header('Location: '. BASE_PATH .'products?'.$search);
+                        exit();
+                    }
+
+                    
                 } elseif (stripos($row['username'], $searchField) !== false) {
                     $matchedOn = 'vendor';
-                    header('Location: '. BASE_PATH .'vendors?'.$search);
-                    exit();
+                    if (strpos($_SERVER['REQUEST_URI'], '/vendors') === false) {
+                        header('Location: '. BASE_PATH .'vendors?'.$search);
+                        exit();
+                    }
                 }
             }
+
         }else{
             $result = Category::query()
                 -> search($searchField, ['name', 'slug'])
@@ -37,8 +44,14 @@
                     $data = $result['data'];
                 }
                 $matchedOn = 'category';
-                header('Location: '. BASE_PATH . 'products/category?'.$search);
-                exit();
+                if (strpos($_SERVER['REQUEST_URI'], '/products/category') === false) {
+                    header('Location: '. BASE_PATH . 'products/category?'.$search);
+                    exit();
+                }
+            }else{
+                if (strpos($_SERVER['REQUEST_URI'], '/products') === false) {
+                    header('Location: '. BASE_PATH . 'products?search='.$search);
+                }
             }
         }
         $_SESSION['data'] = $data;

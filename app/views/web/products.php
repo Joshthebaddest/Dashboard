@@ -4,6 +4,7 @@
   require_once __DIR__ . '/../../models/category.php';
   $username = $_SESSION['user'] ?? null;
   $products = [];
+
   try{
     $data = Product::query()
       ->select('*')
@@ -113,7 +114,6 @@
 
 ?>
 
-
   <style>
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
@@ -146,7 +146,6 @@
       pointer-events: all;
     }
   </style>
-
 
 <main class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-8 flex-grow">
   <!-- Filters Sidebar -->
@@ -259,7 +258,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <?php foreach($products as $product): ?>
           <!-- Product Grid Placeholder -->
-          <?php include __DIR__ .'/components/products-grid.php'; ?>
+          <?php include_once __DIR__ .'/components/products-grid.php'; ?>
         <?php endforeach; ?>
       </div>
       <!-- Pagination (dummy) -->
@@ -319,5 +318,4 @@
     updateSlider();
   </script>
 
-</body>
   

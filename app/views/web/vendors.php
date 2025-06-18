@@ -81,7 +81,7 @@
         <div class="bg-gray-200 animate-pulse rounded-lg h-48"></div>
       <?php endfor; ?>
     </div>
-    <?php elseif(isset($vendors)): ?>
+    <?php elseif(isset($vendors) && !empty($vendors)): ?>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <?php foreach ($vendors as $vendor): ?>
           <div class="hover:shadow-lg transition-shadow duration-200 border rounded-lg overflow-hidden bg-white">

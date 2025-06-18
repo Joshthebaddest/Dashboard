@@ -27,7 +27,7 @@
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
       <?php
-        if(isset($categories)):
+        if(isset($categories) && !empty($categories)):
           foreach ($categories as $category): 
             $slug = $category['slug'];
       ?>

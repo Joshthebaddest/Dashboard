@@ -260,7 +260,7 @@
         <div class="bg-gray-200 animate-pulse rounded-lg h-80"></div>
       <?php endfor; ?>
     </div>
-    <?php elseif(isset($products)): ?>
+    <?php elseif(isset($products) && !empty($products)): ?>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <?php foreach($products as $product): ?>
           <!-- Product Grid Placeholder -->
